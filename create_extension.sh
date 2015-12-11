@@ -9,3 +9,21 @@ gosu postgres psql --dbname template1 <<EOSQL
     CREATE DATABASE $POSTGRES_USER TEMPLATE template1;
 EOSQL
 
+gosu postgres psql <<PBA8
+    CREATE ROLE discovery LOGIN 
+    ENCRYPTED PASSWORD 'md5b141e4a9dd3b0e9e7a2c68f55dd070db' 
+    NOSUPERUSER INHERIT CREATEDB CREATEROLE NOREPLICATION;
+PBA8
+
+gosu postgres psql <<YUN4
+  CREATE DATABASE discovery
+  WITH OWNER = discovery
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'C.UTF-8'
+       LC_CTYPE = 'C.UTF-8'
+       CONNECTION LIMIT = -1;
+  GRANT ALL ON DATABASE discovery TO discovery;
+  GRANT CONNECT ON DATABASE discovery TO public;
+YUN4
+
