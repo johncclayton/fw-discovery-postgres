@@ -20,8 +20,8 @@ gosu postgres psql <<YUN4
   WITH OWNER = discovery
        ENCODING = 'UTF8'
        TABLESPACE = pg_default
-       LC_COLLATE = 'C.UTF-8'
-       LC_CTYPE = 'C.UTF-8'
+       LC_COLLATE = 'en_US.utf8'
+       LC_CTYPE = 'en_US.utf8'
        CONNECTION LIMIT = -1;
   GRANT ALL ON DATABASE discovery TO discovery;
   GRANT CONNECT ON DATABASE discovery TO public;
